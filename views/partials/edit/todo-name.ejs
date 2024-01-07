@@ -1,0 +1,17 @@
+<div 
+	id="todo-<%= todo.id %>-name"
+	hx-get="/todo/<%= todo.id %>/editNameForm" 
+	hx-swap="outerHTML" 
+	class="edit-form-todo-name flex text-center justify-center mb-3 cursor-pointer"
+>
+	
+	<h2 class="font-todo text-4xl w-full px-4">
+		<%= todo.name %>
+	</h2> 
+	<!-- hx-target="#todo-<%= todo.id %>-name" -->
+	
+	<i 
+		class="fa fa-pencil ml-auto edit-icon text-2xl edit-icon" 
+	></i> 
+
+</div>

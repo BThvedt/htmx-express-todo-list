@@ -1,0 +1,30 @@
+<li 
+	id="subtask-<%= subtask.id %>"
+	class="flex mb-4 justify-between"
+>
+
+	<div class="flex">
+		<div 
+			hx-patch="/todo/<%= todoId %>/subtask/<%= subtask.id %>"
+			hx-vals='{"completed": <%= !!subtask.completed %>}'
+			hx-target="#subtask-<%= subtask.id %>"
+			hx-swap="outerHTML"
+			class="drawn-input todo-check mr-4 <%= subtask.completed ? 'checked' : ''%>"
+		>
+			<i class="fa fa-check" ></i>
+		</div>
+		<p class="font-todo text-2xl "><%= subtask.name %></p>
+	</div>
+
+	<div class="flex justify-between text-2xl min-w-[2rem]">
+		<i 
+			hx-delete="/todo/<%= todoId %>/subtask/<%= subtask.id %>"
+			hx-confirm="Delete Subtask: <%= subtask.name %>?"
+			hx-target="#subtask-<%= subtask.id %>"
+			hx-swap="delete"
+			class="fa fa-times edit-icon" 
+		>
+		</i>
+	</div>
+
+</li>

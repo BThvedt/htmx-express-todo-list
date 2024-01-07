@@ -1,0 +1,55 @@
+<%- include('../partials/head') %>
+
+<div id ="edit-page">
+
+	<%- include('../partials/edit/edit-form-header', {todo}) %>
+
+	<%- include('../partials/edit/todo-name', {todo}) %>
+
+	<div class="flex items-center">
+		<h3 class="font-todo text-2xl mr-4">Notes</h3>
+ 
+		<p 
+			id="notes-spinner"
+			class="text-lime-450 text-sm htmx-spinner-indicator"
+		>
+			<i class="fa fa-spinner fa-spin"></i>&nbsp; Saving ..
+		</p>
+	</div>
+
+	<textarea 
+		hx-patch="/todo/<%= todo.id %>/notes"
+		hx-trigger="input delay:500ms" 
+		name="notes"
+		placeholder="Notes... " 
+		rows="3"
+		class="drawn-input w-full px-2 py-1 text-xl mb-3"
+		hx-indicator="#notes-spinner"
+	><%= todo.notes %></textarea>
+
+	<div class="text-center">
+		<h1 class="text-4xl font-header mb-5">Subtasks:</h1> 
+	</div>
+
+	<%- include('../partials/edit/subtask-form', {todoId: todo.id}) %>
+
+	<div class="flex flex-col my-6">
+		<ul id="subtask-list">
+			<% todo.subtasks.forEach((subtask)=> { %>
+				<%- include('../partials/edit/subtask', {subtask, todoId: todo.id}) %>
+			<% }) %>
+		</ul>
+	</div>
+
+	<div class="text-center">
+		<a
+			href="/" 
+			hx-boost="true"
+			hx-swap="transition:true"
+			class='font-todo text-2xl p-3 drawn-input button-style'
+		>Done</a>
+	</div> 
+</div>
+ 
+
+<%- include('../partials/footer') %>

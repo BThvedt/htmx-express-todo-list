@@ -1,0 +1,18 @@
+<form 
+	hx-post="/todos"
+	hx-swap="beforeend show:top"
+	hx-target="#todo-list" 
+	class="flex justify-between" 
+	hx-on::after-request="this.reset()"
+>
+	<input
+		type="test"
+		name="name"
+		minlength="5"
+		placeholder="Got a todo?"
+		class="block p-4 text-black text-2xl drawn-input w-3/4 max-sm:p-2"
+		required
+		autofocus
+	/>
+	<button class='drawn-input button-style text-2xl p-4 max-sm:p-2'>Add</button>
+</form>

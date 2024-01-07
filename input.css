@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-gray-800;
+  }
+}
+
+@layer components {
+  .todo-check {
+    @apply p-1 text-xl flex items-center justify-center self-start text-white cursor-pointer hover:bg-lime-300 transition-all;
+  }
+  .todo-li {
+    @apply max-sm:border max-sm:border-slate-300 max-sm:p-3 max-sm:shadow-md max-sm:rounded-md max-sm:mb-2;
+  }
+  .todo-check.checked {
+    @apply bg-lime-450;
+  }
+  .todo-check.checked.incomplete-subtasks {
+    @apply bg-amber-400;
+  }
+  .todo-check.checked:hover {
+    @apply bg-lime-300;
+  }
+  .todo-check.incomplete-subtasks:hover {
+    @apply bg-amber-200;
+  }
+  .todo-check.checked.incomplete-subtasks:hover {
+    @apply bg-amber-200;
+  }
+  .edit-icon {
+    @apply cursor-pointer text-slate-200 hover:text-slate-500 transition-all;
+  }
+}
+
+.todo-info p.todo-name {
+  transition: 150ms all;
+  text-decoration: underline 0.05em rgba(0, 0, 0, 0);
+  text-underline-offset: 0.1em;
+}
+
+.todo-info:hover p.todo-name {
+  text-shadow: -0.3px -0.3px 0 #333, 0.3px -0.3px 0 #333, -0.3px 0.3px 0 #333,
+    0.3px 0.3px 0 #333;
+  text-decoration-color: rgba(0, 0, 0, 1);
+}
+
+.edit-form-todo-name:hover h2 {
+  transition: 150ms all;
+  text-shadow: -0.3px -0.3px 0 #333, 0.3px -0.3px 0 #333, -0.3px 0.3px 0 #333,
+    0.3px 0.3px 0 #333;
+}
+.edit-form-todo-name:hover i {
+  transition: 150ms all;
+  color: #64748b;
+}
+
+.todo-check i {
+  opacity: 0;
+}
+.todo-check.checked i {
+  opacity: 1;
+}
+
+.drawn-input {
+  transition: background-color 150ms;
+  outline: none;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  border: solid 2px black;
+}
+.button-style.drawn-input {
+  font-family: "Indie Flower";
+  box-shadow: 7px 13px 11px -9px rgba(0, 0, 0, 0.15);
+  background-color: #fbbf24;
+}
+.button-style.drawn-input:hover {
+  font-family: "Indie Flower";
+  box-shadow: 2px 8px 4px -6px rgba(0, 0, 0, 0.25);
+  background-color: #fde68a;
+}
+
+.htmx-spinner-indicator {
+  transition: 150ms all;
+  opacity: 0;
+}
+
+.htmx-request.htmx-spinner-indicator {
+  opacity: 1;
+}
+
+@media screen and (max-width: 650px) {
+  .todo-li i.fa-times {
+    position: relative;
+    bottom: 0.25em;
+  }
+}

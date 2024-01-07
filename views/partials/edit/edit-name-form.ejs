@@ -1,0 +1,18 @@
+<form 
+	id="todo-<%= todo.id %>"
+	hx-patch="/todo/<%= todo.id %>/name"
+	hx-swap="outerHTML"
+	class="flex justify-between mb-3" 
+>
+	<input
+		type="test"
+		name="name"
+		minlength="5"
+		value="<%= todo.name %>"
+		class="block p-2 text-black text-xl drawn-input w-3/4"
+		onfocus="this.setSelectionRange(this.value.length,this.value.length);"
+		required
+		autofocus
+	/>
+	<button class='drawn-input button-style text-xl p-2'>Edit</button>
+</form>

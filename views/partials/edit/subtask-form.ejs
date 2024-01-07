@@ -1,0 +1,17 @@
+<form 
+	hx-post="/todo/<%= todoId %>/subtask"
+	hx-swap="beforeend show:top"
+	hx-target="#subtask-list"
+	class="flex justify-between"
+	hx-on::after-request="this.reset()"
+>
+	<input
+		type="text"
+		name="name"
+		minlength="5"
+		placeholder="Got a subtask?"
+		class="block p-2 text-black text-xl drawn-input w-3/4"
+		required 
+	/>
+	<button class='drawn-input button-style text-xl p-2'>Add</button>
+</form>

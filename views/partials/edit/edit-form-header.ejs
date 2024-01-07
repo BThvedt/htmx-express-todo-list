@@ -1,0 +1,35 @@
+<div
+	id = "todo-<%= todo.id %>-edit-header"
+	hx-get="/todo/<%= todo.id %>/edit-header"
+	hx-trigger="subtaskUpdated from:body"
+	class=" mt-4 mb-2"
+>
+	<div class="flex">
+		<div 
+			hx-patch="/todo/<%= todo.id %>/completed/edit-header"
+			hx-vals='{"completed": <%= !!todo.completed %>}' 
+			hx-target="#todo-<%= todo.id %>-edit-header"
+			hx-swap="outerHTML"
+			class="drawn-input p-2 todo-check text-2xl relative z-10 <%= todo.completed ? 'checked' : ''%> <%= compltedSubtasks < todo.subtasks.length ? 'incomplete-subtasks' : '' %>"
+		>
+			<i class="fa fa-check"></i>
+		</div>
+
+
+		<div class="flex-col mb-3 w-full relative right-6 text-center <%= todo.completed && compltedSubtasks < todo.subtasks.length ? '-mb-3' : '' %>"> 
+			<h1 class="text-4xl font-header">
+				<% if(todo.completed && compltedSubtasks == todo.subtasks.length) { %>
+					Done ! 
+				<% } else if(todo.completed && compltedSubtasks != todo.subtasks.length) { %>
+					Done ?
+				<% } else { %>
+					ToDo :  
+				<% } %>
+			</h1>
+			<% if (todo.completed && compltedSubtasks != todo.subtasks.length) { %>
+				<p class="text-red-400 relative right-1 bottom-2"><%= todo.subtasks.length - compltedSubtasks %> subtask<%= todo.subtasks.length - compltedSubtasks > 1 ? 's' : '' %> unchecked</p>
+			<% } %>
+		</div>
+	</div>
+	
+</div>  

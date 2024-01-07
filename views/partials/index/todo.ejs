@@ -1,0 +1,54 @@
+<li 
+	id="todo-<%= todo.id %>"
+	class="todo-li flex mb-4 justify-between cursor-pointer"
+>
+	<div class="flex w-full">
+
+		<div 
+			hx-patch="/todo/<%= todo.id %>/completed"
+			hx-vals='{"completed": <%= !!todo.completed %>}'
+			hx-target="#todo-<%= todo.id %>"
+			hx-swap="outerHTML"
+			class="drawn-input todo-check mr-4  <%= todo.completed ? 'checked' : ''%> <%= compltedSubtasks < todo.subtasks.length ? 'incomplete-subtasks' : '' %>"
+		>
+			<i class="fa fa-check"></i>
+		</div>
+
+		<a 
+			href="/todo/<%= todo.id %>"
+			hx-boost="true"
+			hx-swap="transition:true"
+			class="todo-info block w-full mr-2"
+		>
+			<p class="todo-name font-todo text-2xl <%= todo.subtasks.length ? 'leading-6' : '' %>"><%= todo.name %></p>
+
+			<% if (todo.subtasks.length) { %>
+				<div class="flex flex-row items-center pt-1">
+					<p class="text-xs mr-1">Subtasks: <%= compltedSubtasks %>/<%= todo.subtasks.length %></p>
+
+					<% for(var i=0; i < todo.subtasks.length; i++) { %>
+						<div 
+							class="w-3 h-3 ml-1 border border-slate-500 rounded-full <%= i < compltedSubtasks ? "bg-lime-450" : "bg-slate-200" %> bg-lime-450" >
+						</div>
+					<% } %>
+					<div class="text-red-400 text-xs ml-2">
+						<% if (compltedSubtasks < todo.subtasks.length && todo.completed ) { %>
+							<p>Subtasks not done</p>
+						<% } %>
+					</div>
+				</div> 
+			<% } %>
+
+		</a> 
+
+	</div>
+
+	<i 
+		hx-delete="/todo/<%= todo.id %>"
+		hx-confirm="Delete Todo: <%= todo.name %>?"
+		hx-target="#todo-<%= todo.id %>"
+		hx-swap="delete"
+		class="text-2xl fa fa-times edit-icon" 
+	></i>
+
+</li>

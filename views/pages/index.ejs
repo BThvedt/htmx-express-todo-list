@@ -1,0 +1,22 @@
+<%- include('../partials/head') %>
+
+<div id ="index-page" >
+
+	<h1 class="index-title font-header text-7xl my-8 text-center max-sm:text-5xl">My &nbsp; Todos</h1>
+
+	<%- include('../partials/index/todo-form') %>
+
+	<div class="flex flex-col mt-12 max-sm:mt-8">
+		<ul id="todo-list">
+			<% todos.forEach((todo)=> { %>
+				<%- include('../partials/index/todo', {
+					todo,
+					compltedSubtasks: todo.subtasks.filter((subtask) => subtask.completed).length
+				}) %>
+			<% }) %>
+		</ul>
+	</div>
+</div>
+
+<%- include('../partials/footer') %>
+ 
